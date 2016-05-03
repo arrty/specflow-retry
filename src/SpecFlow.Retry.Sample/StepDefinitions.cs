@@ -1,36 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Infrastructure;
 
 namespace SpecFlow.Retry.Sample
 {
     [Binding]
     public class StepDefinitions
     {
-        private Random random;
-        private double generatedNumber;
+        private Random _random;
+        private double _generatedNumber;
 
         [Given(@"I have random number generator")]
         public void GivenIHaveRandomNumberGenerator()
         {
-            random = new Random();
+            _random = new Random();
         }
 
         [When(@"it generates number")]
         public void WhenItGeneratesNumber()
         {
-            generatedNumber = random.NextDouble();
+            _generatedNumber = _random.NextDouble();
         }
 
         [Then(@"I'll be lucky if it will be greater then (.*)")]
         public void ThenILlBeLuckyIfItWillBeGreaterThen(double limit)
         {
-            Assert.IsTrue(generatedNumber > limit, "generatedNumber({0}) > limit({1})", generatedNumber, limit);
+            Assert.IsTrue(_generatedNumber > limit, "generatedNumber({0}) > limit({1})", _generatedNumber, limit);
         }
 
 

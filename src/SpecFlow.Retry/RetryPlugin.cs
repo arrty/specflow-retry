@@ -5,7 +5,7 @@ using TechTalk.SpecFlow.Generator.Plugins;
 using TechTalk.SpecFlow.Generator.UnitTestConverter;
 using TechTalk.SpecFlow.Infrastructure;
 
-[assembly: GeneratorPlugin(typeof(GeneratorPlugin))]
+[assembly:GeneratorPlugin(typeof(GeneratorPlugin))]
 namespace SpecFlow.Retry
 {
     public class GeneratorPlugin : IGeneratorPlugin
@@ -18,13 +18,12 @@ namespace SpecFlow.Retry
 
         public void RegisterCustomizations(ObjectContainer container, SpecFlowProjectConfiguration generatorConfiguration)
         {
-            container.RegisterTypeAs<RemoveRetryTagFromCategoriesDecarator, ITestClassTagDecorator>("retry");
-            container.RegisterTypeAs<RemoveRetryTagFromCategoriesDecarator, ITestMethodTagDecorator>("retry");
+            container.RegisterTypeAs<RemoveRetryTagFromCategoriesDecorator, ITestClassTagDecorator>("retry");
+            container.RegisterTypeAs<RemoveRetryTagFromCategoriesDecorator, ITestMethodTagDecorator>("retry");
         }
 
         public void RegisterConfigurationDefaults(SpecFlowProjectConfiguration specFlowConfiguration)
-        {
-
+        {            
         }
     }
 }
