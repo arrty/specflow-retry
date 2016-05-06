@@ -4,11 +4,11 @@ Feature: SampleFeature
     As a math idiot
     I want to be told the sum of two numbers
 
-@retry:2
-Scenario: Random number generator test
-    Given I have random number generator
-    When it generates number
-    Then I'll be lucky if it will be greater then 0.3
+#@retry:2
+#Scenario: Random number generator test
+#    Given I have random number generator
+#    When it generates number
+#    Then I'll be lucky if it will be greater then 0.3
 
 Scenario: Scenario contextisolation
     Given by default scenario context stored value is 0
@@ -23,11 +23,11 @@ Scenario: Tag on feature should be applied
 Scenario: Tag on scenario is preffered
     Then scenario should be run 3 times
 
-@retryExcept:SpecFlow.Retry.Sample.CriticalException
-@criticalException
-Scenario: On except exception should not retry
-    When "SpecFlow.Retry.Sample.CriticalException" thrown
-    Then nothing
+#@retryExcept:SpecFlow.Retry.Sample.CriticalException
+#@criticalException
+#Scenario: On except exception should not retry
+#    When "SpecFlow.Retry.Sample.CriticalException" thrown
+#    Then nothing
 
 Scenario Outline: Tag on feature should be applied to outlined scenario
     Then scenario "<example>" should be run 2 times
