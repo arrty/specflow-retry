@@ -1,11 +1,3 @@
-branches:
-  only:
-  - master
- 
-nuget:
-  project_feed: true
-  disable_publish_on_pr: true
-
 configuration: Release
 
 before_build:
