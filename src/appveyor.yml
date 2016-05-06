@@ -1,10 +1,10 @@
 configuration: Release
 
 before_build:
-  - nuget-restore -verbosity detailed
+  - nuget-restore src\SpecFlow.Retry.sln
 	
 build:
-  project: SpecFlow.Retry.sln
+  project: src\SpecFlow.Retry.sln
   verbosity: normal
   
 test:
