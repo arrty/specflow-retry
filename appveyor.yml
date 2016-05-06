@@ -1,7 +1,7 @@
 configuration: Release
 
 before_build:
-  - nuget-restore src\SpecFlow.Retry.sln
+  - nuget restore src\SpecFlow.Retry.sln
 
 build:
   project: src\SpecFlow.Retry.sln
