@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <id>SpecFlow.Retry</id>
+    <version>0.1.0.0</version>
+    <title>SpecFlow.Retry</title>
+    <authors>Xdamain</authors>
+    <owners>Xdamain</owners>
     <licenseUrl>https://github.com/DamirAinullin/specflow-retry/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/DamirAinullin/specflow-retry</projectUrl>
     <iconUrl>http://go.specflow.org/specflow-nuget-icon</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>SpecFlow generator plugin that adds ability to retry tests on failure for MSTest.</description>
+    <releaseNotes>First stable vesrion.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>specflow mstest</tags>
   </metadata>
