@@ -6,6 +6,7 @@
     <title>SpecFlow.Retry</title>
     <authors>Xdamain</authors>
     <owners>Xdamain</owners>
+	<language>en-US</language>
     <licenseUrl>https://github.com/DamirAinullin/specflow-retry/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/DamirAinullin/specflow-retry</projectUrl>
     <iconUrl>http://go.specflow.org/specflow-nuget-icon</iconUrl>
@@ -14,5 +15,10 @@
     <releaseNotes>First stable vesrion.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>specflow mstest</tags>
+	<dependencies>
+      <dependency id="SpecFlow" version="2.0.0" />
+      <dependency id="SpecFlow.CustomPlugin" version="2.0.0" />
+    </dependencies>
+
   </metadata>
 </package>
