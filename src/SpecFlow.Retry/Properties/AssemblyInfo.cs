@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SpecFlow.Retry")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("SpecFlow generator plugin that adds ability to retry tests on failure for MSTest.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Xdamain")]
 [assembly: AssemblyProduct("SpecFlow.Retry")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
