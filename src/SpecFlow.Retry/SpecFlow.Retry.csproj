@@ -86,7 +86,7 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <Copy SourceFiles="@(PluginFiles)" DestinationFolder="$(MSBuildProjectDirectory)\..\plugin\" SkipUnchangedFiles="true" />
+    <Copy Condition=" '$(Configuration)' != 'Release'" SourceFiles="@(PluginFiles)" DestinationFolder="$(MSBuildProjectDirectory)\..\plugin\" SkipUnchangedFiles="true" />
     <Exec Condition=" '$(Configuration)' == 'Release'" Command="nuget pack SpecFlow.Retry.csproj -Prop Configuration=Release -OutputDirectory .\bin\Release\" ></Exec>
   </Target>
 </Project>
