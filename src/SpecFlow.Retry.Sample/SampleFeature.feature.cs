@@ -26,7 +26,7 @@ namespace SpecFlow.Retry.Sample
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
-            testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
+            testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SampleFeature", "    In order to avoid silly mistakes\r\n    As a math idiot\r\n    I want to be told " +
                     "the sum of two numbers", ProgrammingLanguage.CSharp, new string[] {
                         "retry:1"});
@@ -67,16 +67,56 @@ namespace SpecFlow.Retry.Sample
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Scenario contextisolation")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Random number generator test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SampleFeature")]
-        public virtual void ScenarioContextisolation()
+        public virtual void RandomNumberGeneratorTest()
+        {
+            System.Exception lastException = null;
+            for (int i = 0; (i <= 2); i = (i + 1))
+            {
+                try
+                {
+                    this.RandomNumberGeneratorTestInternal();
+                    return;
+                }
+                catch (System.Exception exc)
+                {
+                    lastException = exc;
+                }
+                if (((i + 1) 
+                            <= 2))
+                {
+                    testRunner.OnScenarioEnd();
+                }
+            }
+            if ((lastException != null))
+            {
+                throw lastException;
+            }
+        }
+        
+        private void RandomNumberGeneratorTestInternal()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Random number generator test", new string[] {
+                        "retry:2"});
+            this.ScenarioSetup(scenarioInfo);
+            testRunner.Given("I have random number generator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+            testRunner.When("it generates number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+            testRunner.Then("I\'ll be lucky if it will be greater then 0.3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Scenario context isolation")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SampleFeature")]
+        public virtual void ScenarioContextIsolation()
         {
             System.Exception lastException = null;
             for (int i = 0; (i <= 1); i = (i + 1))
             {
                 try
                 {
-                    this.ScenarioContextisolationInternal();
+                    this.ScenarioContextIsolationInternal();
                     return;
                 }
                 catch (System.Exception exc)
@@ -95,9 +135,9 @@ namespace SpecFlow.Retry.Sample
             }
         }
         
-        private void ScenarioContextisolationInternal()
+        private void ScenarioContextIsolationInternal()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario contextisolation", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenario context isolation", ((string[])(null)));
             this.ScenarioSetup(scenarioInfo);
             testRunner.Given("by default scenario context stored value is 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
             testRunner.When("I increment scenario context stored value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -208,7 +248,7 @@ namespace SpecFlow.Retry.Sample
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Tag on feature should be applied to outlined scenario")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Tag on feature should be applied to outlined scenario: first")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SampleFeature")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "first")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:example", "first")]
@@ -218,7 +258,7 @@ namespace SpecFlow.Retry.Sample
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Tag on feature should be applied to outlined scenario")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Tag on feature should be applied to outlined scenario: second")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SampleFeature")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "second")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:example", "second")]

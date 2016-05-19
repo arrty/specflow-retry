@@ -4,13 +4,13 @@ Feature: SampleFeature
     As a math idiot
     I want to be told the sum of two numbers
 
-#@retry:2
-#Scenario: Random number generator test
-#    Given I have random number generator
-#    When it generates number
-#    Then I'll be lucky if it will be greater then 0.3
+@retry:2
+Scenario: Random number generator test
+    Given I have random number generator
+    When it generates number
+    Then I'll be lucky if it will be greater then 0.3
 
-Scenario: Scenario contextisolation
+Scenario: Scenario context isolation
     Given by default scenario context stored value is 0
     When I increment scenario context stored value
     Then scenario context stored value should be 1

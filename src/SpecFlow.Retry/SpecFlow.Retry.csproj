@@ -53,9 +53,6 @@
       <HintPath>..\packages\SpecFlow.CustomPlugin.2.0.0\lib\net45\TechTalk.SpecFlow.Parser.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TechTalk.SpecFlow.Parser.Compatibility">
-      <HintPath>..\packages\SpecFlow.2.0.0\tools\TechTalk.SpecFlow.Parser.Compatibility.dll</HintPath>
-    </Reference>
     <Reference Include="TechTalk.SpecFlow.Utils, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.CustomPlugin.2.0.0\lib\net45\TechTalk.SpecFlow.Utils.dll</HintPath>
       <Private>True</Private>
@@ -87,6 +84,7 @@
   -->
   <Target Name="AfterBuild">
     <Copy Condition=" '$(Configuration)' != 'Release'" SourceFiles="@(PluginFiles)" DestinationFolder="$(MSBuildProjectDirectory)\..\plugin\" SkipUnchangedFiles="true" />
-    <Exec Condition=" '$(Configuration)' == 'Release'" Command="nuget pack SpecFlow.Retry.csproj -Prop Configuration=Release -OutputDirectory .\bin\Release\" ></Exec>
+    <Exec Condition=" '$(Configuration)' == 'Release'" Command="nuget pack SpecFlow.Retry.csproj -Prop Configuration=Release -OutputDirectory .\bin\Release\">
+    </Exec>
   </Target>
 </Project>
