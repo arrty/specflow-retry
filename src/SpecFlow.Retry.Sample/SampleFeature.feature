@@ -23,10 +23,10 @@ Scenario: Tag on feature should be applied
 Scenario: Tag on scenario is preffered
     Then scenario should be run 3 times
 
-#@retryExcept:SpecFlow.Retry.Sample.CriticalException
+#@retryExcept:Specflow.Retry.Sample.CriticalException
 #@criticalException
 #Scenario: On except exception should not retry
-#    When "SpecFlow.Retry.Sample.CriticalException" thrown
+#    When "Specflow.Retry.Sample.CriticalException" thrown
 #    Then nothing
 
 Scenario Outline: Tag on feature should be applied to outlined scenario

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SpecFlow.Retry.Sample
+namespace Specflow.Retry.Sample
 {
     [Serializable]
     public class CriticalException : Exception

@@ -12,12 +12,12 @@ namespace SpecFlow.Retry
             _unitTestFeatureGenerator = unitTestFeatureGenerator;
         }
 
-        public bool CanGenerate(SpecFlowFeature feature)
+        public bool CanGenerate(SpecFlowDocument document)
         {
             return true;
         }
 
-        public IFeatureGenerator CreateGenerator(SpecFlowFeature feature)
+        public IFeatureGenerator CreateGenerator(SpecFlowDocument document)
         {
             return _unitTestFeatureGenerator;
         }

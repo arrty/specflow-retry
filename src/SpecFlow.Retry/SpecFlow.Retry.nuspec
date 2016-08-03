@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SpecFlow.Retry</id>
-    <version>2.0.0.0</version>
+    <version>2.1.0.0</version>
     <title>SpecFlow.Retry</title>
     <authors>Damir Ainullin</authors>
     <owners>Damir Ainullin</owners>
@@ -12,12 +12,12 @@
     <iconUrl>http://go.specflow.org/specflow-nuget-icon</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>SpecFlow generator plugin that adds ability to retry tests on failure for MSTest/NUnit.</description>
-    <releaseNotes>Updated for Specflow 2.0.0.</releaseNotes>
+    <releaseNotes>Updated for Specflow 2.1.0.</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>specflow mstest NUnit</tags>
+    <tags>specflow mstest nunit</tags>
 	<dependencies>
-      <dependency id="SpecFlow" version="2.0.0" />
-      <dependency id="SpecFlow.CustomPlugin" version="2.0.0" />
+      <dependency id="SpecFlow" version="2.1.0" />
+      <dependency id="SpecFlow.CustomPlugin" version="2.1.0" />
     </dependencies>
   </metadata>
 </package>

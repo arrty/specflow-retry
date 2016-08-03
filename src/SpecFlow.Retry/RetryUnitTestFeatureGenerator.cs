@@ -63,14 +63,14 @@ namespace SpecFlow.Retry
             return feature.Background != null;
         }
 
-        private TestClassGenerationContext CreateTestClassStructure(CodeNamespace codeNamespace, string testClassName, SpecFlowFeature feature)
+        private TestClassGenerationContext CreateTestClassStructure(CodeNamespace codeNamespace, string testClassName, SpecFlowDocument document)
         {
             var testClass = codeDomHelper.CreateGeneratedTypeDeclaration(testClassName);
             codeNamespace.Types.Add(testClass);
 
             return new TestClassGenerationContext(
                 testGeneratorProvider,
-                feature,
+                document,
                 codeNamespace, 
                 testClass,
                 DeclareTestRunnerMember(testClass),
@@ -80,7 +80,7 @@ namespace SpecFlow.Retry
                 CreateMethod(testClass),
                 CreateMethod(testClass),
                 CreateMethod(testClass),
-                HasFeatureBackground(feature) ? CreateMethod(testClass) : null,
+                HasFeatureBackground(document.SpecFlowFeature) ? CreateMethod(testClass) : null,
                 generateRowTests: testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && generatorConfiguration.AllowRowTests);
         }
 
@@ -94,12 +94,13 @@ namespace SpecFlow.Retry
             return codeNamespace;
         }
 
-        public CodeNamespace GenerateUnitTestFixture(SpecFlowFeature feature, string testClassName, string targetNamespace)
+        public CodeNamespace GenerateUnitTestFixture(SpecFlowDocument document, string testClassName, string targetNamespace)
         {
             CodeNamespace codeNamespace = CreateNamespace(targetNamespace);
+            var feature = document.SpecFlowFeature;
 
             testClassName = testClassName ?? string.Format(TESTCLASS_NAME_FORMAT, feature.Name.ToIdentifier());
-            var generationContext = CreateTestClassStructure(codeNamespace, testClassName, feature);
+            var generationContext = CreateTestClassStructure(codeNamespace, testClassName, document);
 
             SetupTestClass(generationContext);
             SetupTestClassInitializeMethod(generationContext);
@@ -198,7 +199,7 @@ namespace SpecFlow.Retry
             var testRunnerField = GetTestRunnerExpression();
 
             var testRunnerParameters = testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.ParallelExecution) ?
-                new CodeExpression[]{} : new []  {new CodePrimitiveExpression(null), new CodePrimitiveExpression(0) };
+                new CodeExpression[] { } : new[]  { new CodePrimitiveExpression(null), new CodePrimitiveExpression(0) };
 
             testClassInitializeMethod.Statements.Add(
                 new CodeAssignStatement(
@@ -461,7 +462,7 @@ namespace SpecFlow.Retry
                 testMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), pair.Value));
             }
 
-            testMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof (string[]), SCENARIO_OUTLINE_EXAMPLE_TAGS_PARAMETER));
+            testMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string[]), SCENARIO_OUTLINE_EXAMPLE_TAGS_PARAMETER));
             return testMethod;
         }
 
@@ -471,6 +472,7 @@ namespace SpecFlow.Retry
         {
             
             CodeMemberMethod testMethod = CreateTestMethod(generationContext, scenarioOutline, exampleSetTags, variantName, exampleSetIdentifier);
+            
             //call test implementation with the params
             List<CodeExpression> argumentExpressions = row.Cells.Select(paramCell => new CodePrimitiveExpression(paramCell.Value)).Cast<CodeExpression>().ToList();
 
@@ -533,7 +535,7 @@ namespace SpecFlow.Retry
             string retryCountValue;
             return tagFilterMatcher.GetTagValue(retryTag, tagNames, out retryCountValue)
                        && parser(retryCountValue, out value) ||
-                   tagFilterMatcher.GetTagValue(retryTag, generationContext.Feature, out retryCountValue)
+                   tagFilterMatcher.GetTagValue(retryTag, generationContext.Document, out retryCountValue)
                        && parser(retryCountValue, out value);
         }
 
@@ -545,7 +547,7 @@ namespace SpecFlow.Retry
             string retryCountValue;
             return tagFilterMatcher.GetTagValue(retryTag, tagNames, out retryCountValue)
                        && parser(retryCountValue, out value) ||
-                   tagFilterMatcher.GetTagValue(retryTag, generationContext.Feature, out retryCountValue)
+                   tagFilterMatcher.GetTagValue(retryTag, generationContext.Document, out retryCountValue)
                        && parser(retryCountValue, out value);
         }
 
@@ -651,7 +653,7 @@ namespace SpecFlow.Retry
             //ScenarioInfo scenarioInfo = new ScenarioInfo("xxxx", tags...);
             CodeExpression tagsExpression;
             if (additionalTagsExpression == null)
-                tagsExpression = GetStringArrayExpression(scenario.Tags);
+                tagsExpression = GetStringArrayExpression(scenario.GetTags());
             else if (!scenario.HasTags())
                 tagsExpression = additionalTagsExpression;
             else
@@ -661,7 +663,7 @@ namespace SpecFlow.Retry
                 // if (tags2 != null)
                 //   tags = Enumerable.ToArray(Enumerable.Concat(tags1, tags1));
                 testMethod.Statements.Add(
-                    new CodeVariableDeclarationStatement(typeof(string[]), "__tags", GetStringArrayExpression(scenario.Tags)));
+                    new CodeVariableDeclarationStatement(typeof(string[]), "__tags", GetStringArrayExpression(scenario.GetTags())));
                 tagsExpression = new CodeVariableReferenceExpression("__tags");
                 testMethod.Statements.Add(
                     new CodeConditionStatement(
@@ -730,7 +732,7 @@ namespace SpecFlow.Retry
                 testGeneratorProvider.SetTestMethod(generationContext, testMethod, friendlyTestName);
 
             List<string> scenarioCategories;
-            decoratorRegistry.DecorateTestMethod(generationContext, testMethod, ConcatTags(scenarioDefinition.Tags, additionalTags), out scenarioCategories);
+            decoratorRegistry.DecorateTestMethod(generationContext, testMethod, ConcatTags(scenarioDefinition.GetTags(), additionalTags), out scenarioCategories);
 
             if (scenarioCategories.Any())
                 testGeneratorProvider.SetTestMethodCategories(generationContext, testMethod, scenarioCategories);
