@@ -2,19 +2,19 @@
 <package >
   <metadata>
     <id>SpecFlow.Retry</id>
-    <version>0.1.2.0</version>
+    <version>2.0.0.0</version>
     <title>SpecFlow.Retry</title>
-    <authors>Xdamain</authors>
-    <owners>Xdamain</owners>
+    <authors>Damir Ainullin</authors>
+    <owners>Damir Ainullin</owners>
 	<language>en-US</language>
     <licenseUrl>https://github.com/DamirAinullin/specflow-retry/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/DamirAinullin/specflow-retry</projectUrl>
     <iconUrl>http://go.specflow.org/specflow-nuget-icon</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>SpecFlow generator plugin that adds ability to retry tests on failure for MSTest.</description>
-    <releaseNotes>First stable vesrion.</releaseNotes>
+    <description>SpecFlow generator plugin that adds ability to retry tests on failure for MSTest/NUnit.</description>
+    <releaseNotes>Updated for Specflow 2.0.0.</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>specflow mstest</tags>
+    <tags>specflow mstest NUnit</tags>
 	<dependencies>
       <dependency id="SpecFlow" version="2.0.0" />
       <dependency id="SpecFlow.CustomPlugin" version="2.0.0" />
