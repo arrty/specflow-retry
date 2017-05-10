@@ -152,7 +152,7 @@ namespace SpecFlow.Retry
             generationContext.TestClass.IsPartial = true;
             generationContext.TestClass.TypeAttributes |= TypeAttributes.Public;
 
-            AddLinePragmaInitial(generationContext.TestClass, generationContext.Feature.SourceFilePath);
+            AddLinePragmaInitial(generationContext.TestClass, generationContext.Document.SourceFilePath);
 
             testGeneratorProvider.SetTestClass(generationContext, generationContext.Feature.Name, generationContext.Feature.Description);
 
