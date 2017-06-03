@@ -97,6 +97,5 @@ namespace SpecFlow.Retry.Sample
         {
             Assert.Fail("Exception wasn't excepted");
         }
-
     }
 }
