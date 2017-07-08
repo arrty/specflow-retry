@@ -9,12 +9,12 @@ using System.Text.RegularExpressions;
 using Gherkin.Ast;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Generator;
-using TechTalk.SpecFlow.Generator.Configuration;
 using TechTalk.SpecFlow.Generator.UnitTestConverter;
 using TechTalk.SpecFlow.Generator.UnitTestProvider;
 using TechTalk.SpecFlow.Parser;
 using TechTalk.SpecFlow.Tracing;
 using TechTalk.SpecFlow.Utils;
+using TechTalk.SpecFlow.Configuration;
 
 namespace SpecFlow.Retry
 {
@@ -37,16 +37,15 @@ namespace SpecFlow.Retry
 
         private readonly IUnitTestGeneratorProvider testGeneratorProvider;
         private readonly CodeDomHelper codeDomHelper;
-        private readonly GeneratorConfiguration generatorConfiguration;
+        private readonly SpecFlowConfiguration specFlowConfiguration;
         private readonly IDecoratorRegistry decoratorRegistry;
         private readonly ITagFilterMatcher tagFilterMatcher;
 
-        public RetryUnitTestFeatureGenerator(IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper,
-            GeneratorConfiguration generatorConfiguration, IDecoratorRegistry decoratorRegistry, ITagFilterMatcher tagFilterMatcher)
+        public RetryUnitTestFeatureGenerator(IUnitTestGeneratorProvider testGeneratorProvider, CodeDomHelper codeDomHelper, SpecFlowConfiguration specFlowConfiguration, IDecoratorRegistry decoratorRegistry, ITagFilterMatcher tagFilterMatcher)
         {
             this.testGeneratorProvider = testGeneratorProvider;
             this.codeDomHelper = codeDomHelper;
-            this.generatorConfiguration = generatorConfiguration;
+            this.specFlowConfiguration = specFlowConfiguration;
             this.decoratorRegistry = decoratorRegistry;
             this.tagFilterMatcher = tagFilterMatcher;
         }
@@ -81,7 +80,7 @@ namespace SpecFlow.Retry
                 CreateMethod(testClass),
                 CreateMethod(testClass),
                 HasFeatureBackground(document.SpecFlowFeature) ? CreateMethod(testClass) : null,
-                generateRowTests: testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && generatorConfiguration.AllowRowTests);
+                generateRowTests: testGeneratorProvider.GetTraits().HasFlag(UnitTestGeneratorTraits.RowTests) && specFlowConfiguration.AllowRowTests);
         }
 
         private CodeNamespace CreateNamespace(string targetNamespace)
@@ -152,7 +151,7 @@ namespace SpecFlow.Retry
             generationContext.TestClass.IsPartial = true;
             generationContext.TestClass.TypeAttributes |= TypeAttributes.Public;
 
-            AddLinePragmaInitial(generationContext.TestClass, generationContext.Feature.SourceFilePath);
+            AddLinePragmaInitial(generationContext.TestClass, generationContext.Document.SourceFilePath);
 
             testGeneratorProvider.SetTestClass(generationContext, generationContext.Feature.Name, generationContext.Feature.Description);
 
@@ -870,7 +869,7 @@ namespace SpecFlow.Retry
 
         private void AddLinePragmaInitial(CodeTypeDeclaration testType, string sourceFile)
         {
-            if (generatorConfiguration.AllowDebugGeneratedFiles)
+            if (specFlowConfiguration.AllowDebugGeneratedFiles)
                 return;
 
             codeDomHelper.BindTypeToSourceFile(testType, Path.GetFileName(sourceFile));
@@ -878,7 +877,7 @@ namespace SpecFlow.Retry
 
         private void AddLineDirectiveHidden(CodeStatementCollection statements)
         {
-            if (generatorConfiguration.AllowDebugGeneratedFiles)
+            if (specFlowConfiguration.AllowDebugGeneratedFiles)
                 return;
 
             codeDomHelper.AddDisableSourceLinePragmaStatement(statements);
@@ -901,7 +900,7 @@ namespace SpecFlow.Retry
 
         private void AddLineDirective(CodeStatementCollection statements, Location location)
         {
-            if (location == null || generatorConfiguration.AllowDebugGeneratedFiles)
+            if (location == null || specFlowConfiguration.AllowDebugGeneratedFiles)
                 return;
 
             codeDomHelper.AddSourceLinePragmaStatement(statements, location.Line, location.Column);

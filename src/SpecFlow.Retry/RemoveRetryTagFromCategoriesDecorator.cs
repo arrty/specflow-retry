@@ -7,7 +7,7 @@ namespace SpecFlow.Retry
     public class RemoveRetryTagFromCategoriesDecorator : ITestClassTagDecorator, ITestMethodTagDecorator
     {
         private readonly ITagFilterMatcher _tagFilterMatcher;
-
+        
         public RemoveRetryTagFromCategoriesDecorator(ITagFilterMatcher tagFilterMatcher)
         {
             _tagFilterMatcher = tagFilterMatcher;
@@ -16,8 +16,8 @@ namespace SpecFlow.Retry
         private bool CanDecorateFrom(string tagName)
         {
             var tagNames = new[] {tagName};
-            return _tagFilterMatcher.MatchPrefix(TagsRepository.RetryTag, tagNames)
-                   || _tagFilterMatcher.MatchPrefix(TagsRepository.RetryExceptTag, tagNames);
+            return _tagFilterMatcher.MatchPrefix(TagsRepository.RetryTag, tagNames) ||
+                _tagFilterMatcher.MatchPrefix(TagsRepository.RetryExceptTag, tagNames);
         }
 
         public bool CanDecorateFrom(string tagName, TestClassGenerationContext generationContext)
@@ -27,7 +27,6 @@ namespace SpecFlow.Retry
 
         public void DecorateFrom(string tagName, TestClassGenerationContext generationContext)
         {
-            
         }
 
         public bool CanDecorateFrom(string tagName, TestClassGenerationContext generationContext, CodeMemberMethod testMethod)
