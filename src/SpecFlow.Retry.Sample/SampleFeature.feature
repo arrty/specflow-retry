@@ -20,7 +20,7 @@ Scenario: Tag on feature should be applied
     Then scenario should be run 2 times
 
 @retry:2
-Scenario: Tag on scenario is preffered
+Scenario: Tag on scenario is preferred
     Then scenario should be run 3 times
 
 #@retryExcept:Specflow.Retry.Sample.CriticalException

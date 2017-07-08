@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace Specflow.Retry.NunitSample
+namespace Specflow.Retry.Nunit.Sample
 {
     [Binding]
     public class StepDefinitions
@@ -97,6 +97,5 @@ namespace Specflow.Retry.NunitSample
         {
             Assert.Fail("Exception wasn't excepted");
         }
-
     }
 }
