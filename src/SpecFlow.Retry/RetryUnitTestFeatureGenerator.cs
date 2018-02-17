@@ -123,7 +123,9 @@ namespace SpecFlow.Retry
                 if (string.IsNullOrEmpty(scenarioDefinition.Name))
                     throw new TestGeneratorException("The scenario must have a title specified.");
 
-                if (scenarioDefinition is ScenarioOutline scenarioOutline)
+                var scenarioOutline = scenarioDefinition as ScenarioOutline;
+
+                if (scenarioOutline != null)
                 {
                     GenerateScenarioOutlineTest(generationContext, scenarioOutline);
                 }
@@ -903,7 +905,8 @@ namespace SpecFlow.Retry
 
         private SpecFlowStep AsSpecFlowStep(Step step)
         {
-            if (!(step is SpecFlowStep specFlowStep))
+            var specFlowStep = step as SpecFlowStep;
+            if (specFlowStep == null)
             {
                 throw new TestGeneratorException("The step must be a SpecFlowStep.");
             }
