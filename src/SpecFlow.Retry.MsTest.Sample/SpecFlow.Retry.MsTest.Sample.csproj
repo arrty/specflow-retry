@@ -63,12 +63,12 @@
   <ItemGroup>
     <Compile Include="CriticalException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StepDefinitions.cs" />
-	<Compile Include="SampleFeature.feature.cs">
+    <Compile Include="SampleFeature.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SampleFeature.feature</DependentUpon>
     </Compile>
+    <Compile Include="StepDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
