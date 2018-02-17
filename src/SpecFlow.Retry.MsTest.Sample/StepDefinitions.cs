@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 
-namespace SpecFlow.Retry.Sample
+namespace SpecFlow.Retry.MsTest.Sample
 {
     [Binding]
     public class StepDefinitions

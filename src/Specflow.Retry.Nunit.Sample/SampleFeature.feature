@@ -5,7 +5,7 @@ Feature: SampleFeature
     I want to be told the sum of two numbers
 
 @retry:2
-Scenario: Random number generator test
+Scenario: Random number generator test   
     Given I have random number generator
     When it generates number
     Then I'll be lucky if it will be greater then 0.3
