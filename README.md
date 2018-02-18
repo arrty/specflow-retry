@@ -1,8 +1,19 @@
 # specflow-retry
-SpecFlow generator plugin that adds ability to retry tests on failure for MSTest/[NUnit](https://github.com/nunit/docs/wiki/Retry-Attribute).
+SpecFlow generator plugin that adds ability to retry tests on failure for MSTest/[NUnit](http://nunit.org/).
+
+## Setup
+
+For using plugin you should set corresponding path to SpecFlow.Retry.Generator.SpecFlowPlugin.dll in config file:
+
+``` 
+<plugins>
+    <add name="SpecFlow.Retry" path="..\plugin" type="Generator" />
+</plugins>
+```
+
 ## Usage
 
-Adding a retry at the feature level will re-try any failing scenario
+Adding a retry at the feature level will re-try any failing scenario:
 
 ```
 @retry:1
@@ -22,7 +33,7 @@ Examples:
     | second  |
 ```
 
-Adding a retry at the scenario level will re-try the failing scenario
+Adding a retry at the scenario level will re-try the failing scenario:
 
 ```
 @retry:2
