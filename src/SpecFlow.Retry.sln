@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Retry", "SpecFlow.Retry\SpecFlow.Retry.csproj", "{09F75CED-6C8A-457B-AD23-9DF3384FE5B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Retry.Sample", "SpecFlow.Retry.Sample\SpecFlow.Retry.Sample.csproj", "{AD8D3C92-19C5-48A7-9D7A-0D0460509C67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Retry.MsTest.Sample", "SpecFlow.Retry.MsTest.Sample\SpecFlow.Retry.MsTest.Sample.csproj", "{AD8D3C92-19C5-48A7-9D7A-0D0460509C67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specflow.Retry.Nunit.Sample", "Specflow.Retry.Nunit.Sample\Specflow.Retry.Nunit.Sample.csproj", "{2198D3AA-58C4-4EAA-A1C0-0E5A0F1858E5}"
 EndProject
@@ -30,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C4F4A4A-503E-40F2-9918-DDE9D1D1C7AC}
 	EndGlobalSection
 EndGlobal

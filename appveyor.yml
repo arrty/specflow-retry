@@ -9,5 +9,5 @@ build:
 
 test:
   assemblies:
-  - SpecFlow.Retry.Sample.dll
+  - SpecFlow.Retry.MsTest.Sample.dll
   - SpecFlow.Retry.Nunit.Sample.dll
