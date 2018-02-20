@@ -3,11 +3,23 @@ SpecFlow generator plugin that adds ability to retry tests on failure for MSTest
 
 ## Setup
 
-For using plugin you should set corresponding path to SpecFlow.Retry.Generator.SpecFlowPlugin.dll in config file:
+To use this plugin with MsTest you should add following section into <specFlow></specFlow> in your App.config:
 
 ``` 
+<unitTestProvider name="MsTest" />
+<!-- if you will not set "unitTestProvider" that will use "nUnit" by default  -->
 <plugins>
-    <add name="SpecFlow.Retry" path="..\plugin" type="Generator" />
+    <add name="SpecFlow.Retry.Generator" path="..\packages\SpecFlow.Retry.2.3.0\lib\net45" type="Generator" />
+</plugins>
+```
+
+To use this plugin with nUnit you should add following section into <specFlow></specFlow> in your App.config:
+
+``` 
+<unitTestProvider name="nUnit" /> 
+<!-- if you will not set "unitTestProvider" that will use "nUnit" by default  -->
+<plugins>
+    <add name="SpecFlow.Retry.Generator" path="..\packages\SpecFlow.Retry.2.3.0\lib\net45" type="Generator" />
 </plugins>
 ```
 
