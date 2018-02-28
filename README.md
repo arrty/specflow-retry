@@ -1,6 +1,11 @@
 # specflow-retry
 SpecFlow generator plugin that adds ability to retry tests on failure for MSTest/[NUnit](http://nunit.org/).
 
+## Versions
+"SpecFlow.Retry" version="2.3.0" (dependency on "SpecFlow" version="2.3.0") => Not working. See [Issue](https://github.com/techtalk/SpecFlow/issues/888)
+
+"SpecFlow.Retry" version="2.2.0.1" (dependency on "SpecFlow" version="2.1.0") => Working
+
 ## Setup
 
 To use this plugin with MsTest you should add following section into <specFlow></specFlow> in your App.config:
