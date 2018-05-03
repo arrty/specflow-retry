@@ -1,0 +1,13 @@
+configuration: Release
+
+before_build:
+  - nuget restore src\SpecFlow.Retry.sln
+
+build:
+  project: src\SpecFlow.Retry.sln
+  verbosity: normal
+
+test:
+  assemblies:
+  - SpecFlow.Retry.MsTest.Sample.dll
+  - SpecFlow.Retry.Nunit.Sample.dll

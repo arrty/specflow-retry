@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SpecFlow.Retry.Sample
+namespace SpecFlow.Retry.MsTest.Sample
 {
     [Serializable]
     public class CriticalException : Exception

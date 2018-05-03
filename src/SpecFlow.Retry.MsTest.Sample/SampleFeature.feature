@@ -10,7 +10,7 @@ Scenario: Random number generator test
     When it generates number
     Then I'll be lucky if it will be greater then 0.3
 
-Scenario: Scenario contextisolation
+Scenario: Scenario context isolation
     Given by default scenario context stored value is 0
     When I increment scenario context stored value
     Then scenario context stored value should be 1
@@ -20,14 +20,14 @@ Scenario: Tag on feature should be applied
     Then scenario should be run 2 times
 
 @retry:2
-Scenario: Tag on scenario is preffered
+Scenario: Tag on scenario is preferred
     Then scenario should be run 3 times
 
-@retryExcept:SpecFlow.Retry.Sample.CriticalException
-@criticalException
-Scenario: On except exception should not retry
-    When "SpecFlow.Retry.Sample.CriticalException" thrown
-    Then nothing
+#@retryExcept:Specflow.Retry.Sample.CriticalException
+#@criticalException
+#Scenario: On except exception should not retry
+#    When "Specflow.Retry.Sample.CriticalException" thrown
+#    Then nothing
 
 Scenario Outline: Tag on feature should be applied to outlined scenario
     Then scenario "<example>" should be run 2 times
