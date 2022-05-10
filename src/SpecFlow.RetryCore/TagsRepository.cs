@@ -1,4 +1,4 @@
-﻿namespace SpecFlow.Retry
+﻿namespace SpecFlow.RetryCore
 {
     internal static class TagsRepository
     {

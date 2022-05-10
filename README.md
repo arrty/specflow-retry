@@ -2,31 +2,11 @@
 SpecFlow generator plugin that adds ability to retry tests on failure for MSTest/[NUnit](http://nunit.org/).
 
 ## Versions
-"SpecFlow.Retry" version="2.3.0" (dependency on "SpecFlow" version="2.3.0") => Not working. See [Issue](https://github.com/techtalk/SpecFlow/issues/888)
-
-"SpecFlow.Retry" version="2.2.0.1" (dependency on "SpecFlow" version="2.1.0") => Working
+"SpecFlow.RetryCore" version="2.3.0" (dependency on "SpecFlow" version="2.4.8")
 
 ## Setup
 
-To use this plugin with MsTest you should add following section into <specFlow></specFlow> in your App.config:
-
-``` 
-<unitTestProvider name="MsTest" />
-<!-- if you will not set "unitTestProvider" that will use "nUnit" by default  -->
-<plugins>
-    <add name="SpecFlow.Retry.Generator" path="..\packages\SpecFlow.Retry.2.3.0\lib\net45" type="Generator" />
-</plugins>
-```
-
-To use this plugin with nUnit you should add following section into <specFlow></specFlow> in your App.config:
-
-``` 
-<unitTestProvider name="nUnit" /> 
-<!-- if you will not set "unitTestProvider" that will use "nUnit" by default  -->
-<plugins>
-    <add name="SpecFlow.Retry.Generator" path="..\packages\SpecFlow.Retry.2.3.0\lib\net45" type="Generator" />
-</plugins>
-```
+Add the nuget package and the SpecFlow.CustomPlugin
 
 ## Usage
 
@@ -61,7 +41,3 @@ Scenario: Random number generator test
 ```
 
 ## Build status
-Continious integration: [![Build status](https://ci.appveyor.com/api/projects/status/fgr338iwl0pnd8u0?svg=true)](https://ci.appveyor.com/project/DamirAinullin/specflow-retry)
-
-[![NuGet version](https://badge.fury.io/nu/specflow.retry.svg)](https://badge.fury.io/nu/specflow.retry)
-
