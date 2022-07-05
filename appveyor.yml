@@ -1,0 +1,9 @@
+configuration: Release
+
+before_build:
+  - nuget restore src\SpecFlow.Retry.sln
+
+build:
+  project: src\SpecFlow.Retry.sln
+  verbosity: normal
+
